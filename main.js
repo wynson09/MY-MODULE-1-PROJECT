@@ -19,17 +19,33 @@ export var newsList = [
 export function search() {
   //inputValue is the variable that contains the search string
   const inputValue = document.getElementById("search-input").value;
+  var newsListToLowerCase = newsList.map(element => {       
+    return element.toLowerCase();
+  });
+  let holdValue = []; 
+  let x = 0;
 
   //Write your code here for the search function
+  for(var i = 0; i < newsList.length; i++){
+    var result = newsListToLowerCase[i].match(inputValue.toLocaleLowerCase());
+    if((result != null) || (result != undefined)){
+        holdValue[x] = newsList[i];
+        x++;
+    }
+  }
 
+  newsList = holdValue;
   return newsList;
 }
 
 export function sort(type) {
   if (type == "ascending") {
     //Write your code here for sorting (ascending)
+    newsList.sort();
   } else {
     //Write your code here for sorting (descending)
+    newsList.sort();
+    newsList.reverse();
   }
 
   return newsList;
